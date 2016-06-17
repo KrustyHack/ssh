@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HOST=$1
+PORT=$2
+
+if [ "$HOST" == "" ]; then
+	echo "Missing HOST"
+	exit 0
+fi
+
+if [ "$PORT" != "" ]; then
+	VPORT="-p$PORT"
+else
+	VPORT=""
+fi
+ssh -i /root/.ssh/id_rsa -t $HOST $VPORT 'curl -s https://raw.githubusercontent.com/KrustyHack/ssh/master/authorized_keys_from_github.sh |/bin/bash; /bin/bash -i'
