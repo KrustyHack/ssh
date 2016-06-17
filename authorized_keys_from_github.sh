@@ -1,11 +1,12 @@
 #!/bin/bash
 
 wget --quiet -O /tmp/keys https://github.com/krustyhack.keys
-for key in `cat /tmp/keys`; do
-	echo "----- $key -----"
+while read key; do
+	echo "--------------- $key ---------------"
 	if grep --quiet "$key" /root/.ssh/authorized_keys; then
 		echo "Already registered"
 	else
+		echo "Key added"
 		echo $key >> /root/.ssh/authorized_keys
 	fi
-done
+done < "/tmp/keys"
