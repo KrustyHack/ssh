@@ -7,13 +7,13 @@ while read key; do
 		echo "Already registered in root account"
 	else
 		echo "Key added in root account"
-		echo $key | sudo tee /root/.ssh/authorized_keys
+		echo $key | sudo tee --append /root/.ssh/authorized_keys
 	fi
 
 	if sudo grep --quiet "$key" ~/.ssh/authorized_keys; then
 		echo "Already registered in user account"
 	else
 		echo "Key added in user account"
-		echo $key | sudo tee ~/.ssh/authorized_keys
+		echo $key | sudo tee --append ~/.ssh/authorized_keys
 	fi
 done < "/tmp/keys"
