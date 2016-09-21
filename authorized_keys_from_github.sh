@@ -7,6 +7,6 @@ while read key; do
 		echo "Already registered"
 	else
 		echo "Key added"
-		sudo echo $key >> /root/.ssh/authorized_keys
+		echo $key | sudo tee /root/.ssh/authorized_keys
 	fi
 done < "/tmp/keys"
