@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Updating ssh keys
 sudo wget --quiet -O /tmp/keys https://github.com/krustyhack.keys
 while read key; do
 	echo "--------------- $key ---------------"
